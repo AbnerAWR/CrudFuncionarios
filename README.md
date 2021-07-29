@@ -1,4 +1,4 @@
-Link para aplicação: https://crud-funcionarios.loca.lt/ (Meu banco precisa estar aberto para funcionar).
+Link para aplicação: https://crud-funcionario.loca.lt/ (Meu banco precisa estar aberto para funcionar).
 # CrudFuncionarios
 
 Aplicação criada como desafio de um FreeLance.
