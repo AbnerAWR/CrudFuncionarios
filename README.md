@@ -8,7 +8,9 @@ Aplicação criada como desafio de um FreeLance.
 #gh repo clone AbnerAWR/CrudFuncionarios
 
 #Para fazer a aplicação funcionar é necessario editar o arquivo appsettings.json e modificar a seguinte linha: (SQL Server)
+
 "DefaultConnection": "Data Source="Nome do seu banco aqui";Initial Catalog=CrudFuncionarios;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+
 #Caso você utilize Usuario e senha, é necessario criar User="" e Password= para que consiga acessar o banco.
 
 --Foi proposto seguinte desafio:
