@@ -1,0 +1,69 @@
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+
+@model X.PagedList.PagedList<CrudFuncionarios.Models.Entity.Funcionarios>
+
+@{
+    ViewData["Title"] = "Funcionarios";
+}
+
+<h1>Funcionarios</h1>
+
+<p>
+    <a asp-action="Create">Criar novo Funcionario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Idade)
+            </th>
+            <th>
+             R$ @Html.DisplayNameFor(model => model.First().Salario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Departamento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idade)
+            </td>
+            <td>
+                R$ @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+            </td>
+        </tr>
+            
+}    
+    </tbody>
+
+</table>
+
+
+@Html.PagedListPager((IPagedList)Model, pagina => Url.Action("Index", new { pagina }), Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+
