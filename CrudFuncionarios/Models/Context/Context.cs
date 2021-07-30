@@ -13,8 +13,25 @@ namespace CrudFuncionarios.Models.Context
         {
             Database.EnsureCreated();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Chefia>()
+                 .HasMany(e => e.Departamentos)
+                 .WithOne(e => e.Chefia)
+                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Departamento>()
+                .HasMany(s => s.Funcionarios)
+                .WithOne(s => s.Departamento)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
+
         public DbSet<Funcionarios> Funcionarios { get; set; }
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Chefia> Chefia { get; set; }
+
+      
     }
 }

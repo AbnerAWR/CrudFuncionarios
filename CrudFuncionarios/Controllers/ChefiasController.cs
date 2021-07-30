@@ -141,15 +141,33 @@ namespace CrudFuncionarios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var chefia = await _context.Chefia.FindAsync(id);
-            _context.Chefia.Remove(chefia);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var chefia = await _context.Chefia.FindAsync(id);
+                _context.Chefia.Remove(chefia);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(ErrorDelete));
+
+                throw;
+            }
+            
+                       
         }
 
         private bool ChefiaExists(int id)
         {
             return _context.Chefia.Any(e => e.Id == id);
         }
+
+        public IActionResult ErrorDelete()
+        { 
+            return View();
+        }
+
+
     }
 }

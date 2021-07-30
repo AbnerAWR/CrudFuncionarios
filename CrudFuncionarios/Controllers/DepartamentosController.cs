@@ -147,15 +147,32 @@ namespace CrudFuncionarios.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var departamento = await _context.Departamento.FindAsync(id);
-            _context.Departamento.Remove(departamento);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var departamento = await _context.Departamento.FindAsync(id);
+                _context.Departamento.Remove(departamento);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                return RedirectToAction(nameof(ErrorDelete));
+
+                throw;
+            }
+           
         }
 
         private bool DepartamentoExists(int id)
         {
             return _context.Departamento.Any(e => e.Id == id);
         }
+
+        public IActionResult ErrorDelete()
+        {
+            return View();
+        }
+
     }
 }
